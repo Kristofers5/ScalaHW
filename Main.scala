@@ -2,6 +2,8 @@
 
 
 
+import scala.collection.mutable.Stack
+
 
 case class Node(var value: Int, var left: Node = null, var right: Node = null)
 
@@ -19,23 +21,42 @@ def pievienot(root: Node, value: Int): Node = {
 }
 
 
-//testing
-def inOrderTraversal(root: Node): Unit = {
-    if (root != null) {
-        inOrderTraversal(root.left)
-        print(root.value + " ")
-        inOrderTraversal(root.right)
+def mekle( root: Node, x: Int ): Unit = {
+
+    val stack = Stack[String]()
+    stack.push("*")
+
+    def helper( root: Node, x: Int ): Unit = {
+        if ( root == null ) {
+            println("not found")
+        }else if ( x < root.value ){
+            stack.push("L")
+            helper( root.left, x )
+        }else if ( x > root.value){
+            stack.push("R")
+            helper( root.right, x )    
+        }else if ( x == root.value){
+            val temp = Stack[String]()
+            while ( stack.nonEmpty ) {
+                temp.push(stack.pop())
+            }
+            
+            while ( temp.nonEmpty ){
+                printf( temp.pop )
+            }
+            println("")
+        }
     }
+
+    helper(root, x)
 }
-
-
 
 
 object Main {
 
     def main(args: Array[String]): Unit = {
 
-        printf("n = ")
+        printf( "n = " )
         var n = scala.io.StdIn.readInt()
 
         var input = scala.io.StdIn.readLine()
@@ -47,13 +68,11 @@ object Main {
             root = pievienot(root, num(i).toInt)
         }
 
-        println("In-order Traversal of BST:")
-        inOrderTraversal(root)
+        printf( "x = " )
+        var x = scala.io.StdIn.readInt()
 
 
-
+        println("result: ")
+        mekle(root, x)
     }
 }
-
-
-
