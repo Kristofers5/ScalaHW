@@ -3,12 +3,12 @@
 
 
 
-case class Node(var left: Tree, var value: Int, var right: Tree)
+case class Node(var value: Int, var left: Node = null, var right: Node = null)
 
 
-def pievienot(root: Node, value: Int): Node{
+def pievienot(root: Node, value: Int): Node = {
     if (root == null){
-        Node(value)
+        return Node(value)
     }else if ( value < root.value){
         root.left = pievienot(root.left, value)
         return root
@@ -20,12 +20,12 @@ def pievienot(root: Node, value: Int): Node{
 
 
 //testing
-def inOrderTraversal(root: TreeNode): Unit = {
-  if (root != null) {
-    inOrderTraversal(root.left)
-    print(root.value + " ")
-    inOrderTraversal(root.right)
-  }
+def inOrderTraversal(root: Node): Unit = {
+    if (root != null) {
+        inOrderTraversal(root.left)
+        print(root.value + " ")
+        inOrderTraversal(root.right)
+    }
 }
 
 
@@ -38,24 +38,21 @@ object Main {
         printf("n = ")
         var n = scala.io.StdIn.readInt()
 
-        
-        
+        var input = scala.io.StdIn.readLine()
+        var num = input.split(" ")
+
+        var root: Node = null
+
+        for ( i <- 0 until n ) {
+            root = pievienot(root, num(i).toInt)
+        }
+
+        println("In-order Traversal of BST:")
+        inOrderTraversal(root)
+
+
+
     }
-
-
-    //testing
-    var root: TreeNode = null
-
-    val values = List(50, 30, 70, 20, 40, 60, 80)
-
-    for (v <- values) {
-        root = insert(root, v)
-    }
-
-    println("In-order Traversal of BST:")
-    inOrderTraversal(root)
-
-
 }
 
 
