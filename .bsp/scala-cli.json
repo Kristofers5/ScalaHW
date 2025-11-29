@@ -1,0 +1,20 @@
+{
+  "name": "scala-cli",
+  "argv": [
+    "/home/codespace/.cache/scalacli/local-repo/bin/scala-cli/scala-cli",
+    "bsp",
+    "--json-options",
+    "/workspaces/ScalaHW/.scala-build/ide-options-v2.json",
+    "--json-launcher-options",
+    "/workspaces/ScalaHW/.scala-build/ide-launcher-options.json",
+    "--envs-file",
+    "/workspaces/ScalaHW/.scala-build/ide-envs.json",
+    "/workspaces/ScalaHW/Main.scala"
+  ],
+  "version": "1.10.1",
+  "bspVersion": "2.1.1",
+  "languages": [
+    "scala",
+    "java"
+  ]
+}
